@@ -1,19 +1,19 @@
-<a href="../meetings">Reuniões</a>
+<a href="../meetings">Meetings</a>
 <% if @participants.blank? %>
-<p>Não há nenhum participante cadastrado no banco de dados.</p>
+<p>There are no participants registered.</p>
 <% else %>
-	<p>Esses são os particpantes cadastrados no banco de dados:</p>
+	<p>Theses are the current registered participants:</p>
 	
 	<ul id="participants">
 	<% @participants.each do |participant| %>
 	
 	<li>
 	    <%= link_to participant.name, participant %>
-	    <b><%= link_to 'Editar', edit_participant_path(participant) %></b>
-	    <b><%= link_to 'Deletar', participant, :confirm => 'Tem certeza que deseja deletar esse participante?', :method => :delete %></b>
+	    <b><%= link_to 'Edit', edit_participant_path(participant) %></b>
+	    <b><%= link_to 'Delete', participant, :confirm => 'Are you sure you want to delete this participant?', :method => :delete %></b>
 	</li>
 	
 	<% end %>
 	</ul>
 <% end %>
-<p><%= link_to "Adcionar novo participante", {:action => 'new' }%></p>
+<p><%= link_to "Add new participante", {:action => 'new' }%></p>

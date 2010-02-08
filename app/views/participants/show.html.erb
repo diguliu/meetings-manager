@@ -5,7 +5,7 @@
 
 <% @aux = @meetings%>
 
-<b>Reuniões Confirmadas: </b> 
+<b>Confirmed Meetings: </b> 
 <ul>
 	<% @participant.meetings.each do |meeting| %>
 		<li>
@@ -15,24 +15,24 @@
 	<% end %>
 </ul>
 <div class=cool_box>
-<b>Confirmar Participação em: </b>
+<b>Confirm Participation In: </b>
 <% form_tag :action => "join" do %>
 	<%= hidden_field "participant", "id", :id => @participant.id %>
 	<%= collection_select(:meeting, :id, @aux, :id, :title, :class =>"Meeting") %>
 	<br /><br />
-	<%= submit_tag "Participar" %>
+	<%= submit_tag "Join" %>
 <% end %>
 </div>
 <br /><br />
 <div class=cool_box>
-<b> Retirar Participação em: </b>
+<b> Remove Participation In: </b>
 <% form_tag :action => "disjoin" do %>
 	<%= hidden_field "participant", "id", :id => @participant.id %>
 	<%= collection_select(:meeting, :id, @participant.meetings, :id, :title, :class =>"Meeting") %>
 	<br /><br />
-	<%= submit_tag "Sair" %>
+	<%= submit_tag "Leave" %>
 <% end %>
 </div>
 
-<%= link_to 'Editar', edit_participant_path(@participant) %> |
-<%= link_to 'Voltar', participants_path %>
+<%= link_to 'Edit', edit_participant_path(@participant) %> |
+<%= link_to 'Back', participants_path %>

@@ -2,23 +2,23 @@
   <%= f.error_messages %>
 
 	<p><font color="red">*</font>
-		<%= f.label "Titulo: " %>  
+		<%= f.label "Title: " %>  
 		<%= f.text_field :title %>
 		
 	</p>
 
 	<p><font color="red">*</font>
-		<%= f.label "Data: " %>  
+		<%= f.label "Date: " %>  
 		<%= f.text_field :date %>
 		
 	</p>
     <p class="obs">
-        Forma: dd/mm/yyyy <br />
+        Pattern: dd/mm/yyyy <br />
 		Ex: 15-01-2006 | 18-5-555 | 26/1/2006 | 27/07/2006
 	</p>
 
 	<p><font color="red">*</font>
-		<%= f.label "Horário: " %>  
+		<%= f.label "Time: " %>  
 		<%= f.text_field :time %>
 		
 	</p>
@@ -27,14 +27,14 @@
 	</p>
 
 	<p>
-		<%= f.label "Descrição: " %> 
+		<%= f.label "Description: " %> 
 	</p>
 	<p>
 		<%= f.text_area :description %>  
 	</p>
 
-	<p><font color="red">* Campos Obrigatórios</font></p>
+	<p><font color="red">* Required Fields</font></p>
   <p>
-    <%= f.submit 'Criar' %>
+    <%= f.submit 'Create' %>
   </p>
 <% end %>

@@ -1,9 +1,9 @@
 <h1><%= @meeting.title %></h1>
-<b>Data: </b> <%= @meeting.date %><br />
-<b>Horário: </b> <%= @meeting.time %><br />
-<b>Criada: </b> <%= @meeting.created_at %><br />
+<b>Date: </b> <%= @meeting.date %><br />
+<b>Time: </b> <%= @meeting.time %><br />
+<b>Created_at: </b> <%= @meeting.created_at %><br />
 <p><%= @meeting.description %></p>
-<p><b>Usuarios confirmados:</b></p>
+<p><b>Confirmed users:</b></p>
 <ul>
 	<% @meeting.participants.each do |participant| %>
 		<li>
@@ -12,5 +12,5 @@
 	<% end %>
 </ul>
 
-<%= link_to 'Editar', edit_meeting_path(@meeting) %> |
-<%= link_to 'Voltar', meetings_path %>
+<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<%= link_to 'Back', meetings_path %>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>string_to_time (ActiveRecord::ConnectionAdapters::Column)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File vendor/plugins/validates_date_time/lib/parser.rb, line 64</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">string_to_time</span>(<span class="ruby-identifier">value</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">blank?</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Time</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">DateTime</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_time</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">default_timezone</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
+          
+          <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>
+          
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\A(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\Z/</span>
+            <span class="ruby-identifier">time_array</span> = [<span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>, <span class="ruby-identifier">$3</span>, <span class="ruby-identifier">$4</span>, <span class="ruby-identifier">$5</span>, <span class="ruby-identifier">$6</span>].<span class="ruby-identifier">map!</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_i</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-comment cmt"># The basic approach is to attempt to parse a date from the front of the string, splitting on spaces.</span>
+            <span class="ruby-comment cmt"># Once a date has been parsed, a time is extracted from the rest of the string.</span>
+            <span class="ruby-identifier">split_index</span> = <span class="ruby-identifier">date</span> = <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">split_index</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value str">' '</span>, <span class="ruby-identifier">split_index</span> <span class="ruby-value">? </span><span class="ruby-identifier">split_index</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+              
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">split_index</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">date</span> = <span class="ruby-identifier">string_to_date</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">first</span>(<span class="ruby-identifier">split_index</span>))
+                <span class="ruby-keyword kw">break</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+            
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">nil?</span>
+            
+            <span class="ruby-identifier">time</span> = <span class="ruby-identifier">string_to_dummy_time</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">last</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">split_index</span>))
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">nil?</span>
+            
+            <span class="ruby-identifier">time_array</span> = [<span class="ruby-identifier">date</span>.<span class="ruby-identifier">year</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">month</span>, <span class="ruby-identifier">date</span>.<span class="ruby-identifier">day</span>, <span class="ruby-identifier">time</span>.<span class="ruby-identifier">hour</span>, <span class="ruby-identifier">time</span>.<span class="ruby-identifier">min</span>, <span class="ruby-identifier">time</span>.<span class="ruby-identifier">sec</span>, <span class="ruby-identifier">time</span>.<span class="ruby-identifier">usec</span>]
+          <span class="ruby-keyword kw">end</span>
+          
+          <span class="ruby-comment cmt"># From schema_definitions.rb</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-constant">Time</span>.<span class="ruby-identifier">send</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">default_timezone</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">time_array</span>)
+          <span class="ruby-keyword kw">rescue</span>
+            <span class="ruby-identifier">zone_offset</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Base</span>.<span class="ruby-identifier">default_timezone</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:local</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">offset</span> <span class="ruby-keyword kw">else</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">end</span>
+            <span class="ruby-comment cmt"># Append zero calendar reform start to account for dates skipped by calendar reform</span>
+            <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">time_array</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">5</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">zone_offset</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">0</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

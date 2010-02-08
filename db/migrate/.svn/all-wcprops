@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/2/trunk/db/migrate
+END
+20090902015439_create_participants.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2/trunk/db/migrate/20090902015439_create_participants.rb
+END
+20090902021007_create_meeting_participant_join_tables.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/2/trunk/db/migrate/20090902021007_create_meeting_participant_join_tables.rb
+END
+20090902015423_create_meetings.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/db/migrate/20090902015423_create_meetings.rb
+END

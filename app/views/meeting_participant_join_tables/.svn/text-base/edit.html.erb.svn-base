@@ -1,0 +1,12 @@
+<h1>Editing meeting_participant_join_table</h1>
+
+<% form_for(@meeting_participant_join_table) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @meeting_participant_join_table %> |
+<%= link_to 'Back', meeting_participant_join_tables_path %>

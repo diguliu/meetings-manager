@@ -1,0 +1,2 @@
+module MeetingParticipantJoinTablesHelper
+end

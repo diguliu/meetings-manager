@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/init.rb
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/CHANGELOG
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/MIT-LICENSE
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/README
+END

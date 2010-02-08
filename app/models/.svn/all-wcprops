@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/6/trunk/app/models
+END
+participant.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/3/trunk/app/models/participant.rb
+END
+catch_date_values.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/7/trunk/app/models/catch_date_values.rb
+END
+leap_year.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/3/trunk/app/models/leap_year.rb
+END
+validate_date.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/7/trunk/app/models/validate_date.rb
+END
+validate_time.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/7/trunk/app/models/validate_time.rb
+END
+meeting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/7/trunk/app/models/meeting.rb
+END
+meeting_participant_join_table.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/app/models/meeting_participant_join_table.rb
+END

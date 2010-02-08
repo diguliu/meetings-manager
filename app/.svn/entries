@@ -1,0 +1,47 @@
+9
+
+dir
+6
+https://meetings-manager.googlecode.com/svn/trunk/app
+https://meetings-manager.googlecode.com/svn
+
+
+
+2009-10-21T18:09:47.701995Z
+6
+diguliu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+1faa06ba-be4a-11de-8784-f7ad4773dbab
+
+
+
+
+
+
+0
+
+helpers
+dir
+
+models
+dir
+
+controllers
+dir
+
+views
+dir
+

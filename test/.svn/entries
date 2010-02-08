@@ -1,0 +1,81 @@
+9
+
+dir
+6
+https://meetings-manager.googlecode.com/svn/trunk/test
+https://meetings-manager.googlecode.com/svn
+
+
+
+2009-10-21T14:08:23.142004Z
+2
+diguliu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+
+unit
+dir
+
+test_helper.rb
+file
+
+
+
+
+2009-10-21T02:42:29.724362Z
+e297614c72684d065aef001f86188732
+2009-10-21T14:08:23.142004Z
+2
+diguliu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1800
+
+performance
+dir
+
+functional
+dir
+
+fixtures
+dir
+

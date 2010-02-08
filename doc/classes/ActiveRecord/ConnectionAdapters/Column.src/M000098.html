@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>string_to_dummy_time (ActiveRecord::ConnectionAdapters::Column)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File vendor/plugins/validates_date_time/lib/parser.rb, line 34</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">string_to_dummy_time</span>(<span class="ruby-identifier">value</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">blank?</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Time</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">DateTime</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_time</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">default_timezone</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Date</span>)
+          
+          <span class="ruby-identifier">hour</span>, <span class="ruby-identifier">minute</span>, <span class="ruby-identifier">second</span>, <span class="ruby-identifier">microsecond</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>
+            <span class="ruby-comment cmt"># 12 hours with minute and second</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/\A(\d{1,2})[\. :](\d{2})[\. :](\d{2})\s?(am|pm)\Z/i</span>
+              [<span class="ruby-identifier">full_hour</span>(<span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$4</span>), <span class="ruby-identifier">$2</span>, <span class="ruby-identifier">$3</span>]
+            <span class="ruby-comment cmt"># 12 hour with minute: 7.30pm, 11:20am, 2 20PM</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/\A(\d{1,2})[\. :](\d{2})\s?(am|pm)\Z/i</span>
+              <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">12</span>
+              [<span class="ruby-identifier">full_hour</span>(<span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$3</span>), <span class="ruby-identifier">$2</span>]
+            <span class="ruby-comment cmt"># 12 hour without minute: 2pm, 11Am, 7 pm</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/\A(\d{1,2})\s?(am|pm)\Z/i</span>
+              [<span class="ruby-identifier">full_hour</span>(<span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>)]
+            <span class="ruby-comment cmt"># 24 hour: 22:30, 03.10, 12 30</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/\A(\d{2})[\. :](\d{2})([\. :](\d{2})(\.(\d{1,6}))?)?\Z/</span>
+              [<span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>, <span class="ruby-identifier">$4</span>, <span class="ruby-identifier">$6</span>]
+            <span class="ruby-comment cmt"># 2006-01-01T10:10:10+13:00</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/\A(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\Z/</span>
+              [<span class="ruby-identifier">$4</span>, <span class="ruby-identifier">$5</span>, <span class="ruby-identifier">$6</span>]
+            <span class="ruby-comment cmt"># Not a valid time string</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">end</span>
+          
+          <span class="ruby-constant">Time</span>.<span class="ruby-identifier">send</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">default_timezone</span>, <span class="ruby-value">2000</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-identifier">hour</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">minute</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">second</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">microsecond</span>.<span class="ruby-identifier">to_i</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

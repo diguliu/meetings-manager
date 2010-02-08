@@ -1,0 +1,38 @@
+<h1><%= @participant.name %></h1>
+<p>
+	<b>Email: </b> <%= @participant.email %>
+</p>
+
+<% @aux = @meetings%>
+
+<b>Reuniões Confirmadas: </b> 
+<ul>
+	<% @participant.meetings.each do |meeting| %>
+		<li>
+	    	<%= link_to meeting.title, meeting %>
+			<% @aux.delete(meeting) %>
+		</li>
+	<% end %>
+</ul>
+<div class=cool_box>
+<b>Confirmar Participação em: </b>
+<% form_tag :action => "join" do %>
+	<%= hidden_field "participant", "id", :id => @participant.id %>
+	<%= collection_select(:meeting, :id, @aux, :id, :title, :class =>"Meeting") %>
+	<br /><br />
+	<%= submit_tag "Participar" %>
+<% end %>
+</div>
+<br /><br />
+<div class=cool_box>
+<b> Retirar Participação em: </b>
+<% form_tag :action => "disjoin" do %>
+	<%= hidden_field "participant", "id", :id => @participant.id %>
+	<%= collection_select(:meeting, :id, @participant.meetings, :id, :title, :class =>"Meeting") %>
+	<br /><br />
+	<%= submit_tag "Sair" %>
+<% end %>
+</div>
+
+<%= link_to 'Editar', edit_participant_path(@participant) %> |
+<%= link_to 'Voltar', participants_path %>

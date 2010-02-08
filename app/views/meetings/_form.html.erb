@@ -1,0 +1,40 @@
+<% form_for(@meeting) do |f| %>
+  <%= f.error_messages %>
+
+	<p><font color="red">*</font>
+		<%= f.label "Titulo: " %>  
+		<%= f.text_field :title %>
+		
+	</p>
+
+	<p><font color="red">*</font>
+		<%= f.label "Data: " %>  
+		<%= f.text_field :date %>
+		
+	</p>
+    <p class="obs">
+        Forma: dd/mm/yyyy <br />
+		Ex: 15-01-2006 | 18-5-555 | 26/1/2006 | 27/07/2006
+	</p>
+
+	<p><font color="red">*</font>
+		<%= f.label "Horário: " %>  
+		<%= f.text_field :time %>
+		
+	</p>
+    <p class="obs">
+		Ex: 1pm | 10:11h | 13h | 11:30pm | 8am
+	</p>
+
+	<p>
+		<%= f.label "Descrição: " %> 
+	</p>
+	<p>
+		<%= f.text_area :description %>  
+	</p>
+
+	<p><font color="red">* Campos Obrigatórios</font></p>
+  <p>
+    <%= f.submit 'Criar' %>
+  </p>
+<% end %>

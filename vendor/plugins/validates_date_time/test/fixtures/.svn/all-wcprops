@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/test/fixtures
+END
+en.yml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/test/fixtures/en.yml
+END
+people.yml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/test/fixtures/people.yml
+END
+person.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/2/trunk/vendor/plugins/validates_date_time/test/fixtures/person.rb
+END

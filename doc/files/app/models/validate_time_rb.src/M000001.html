@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>validate_time (app/models/validate_time.rb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File app/models/validate_time.rb, line 1</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_time</span>(<span class="ruby-identifier">time</span>)
+<span class="ruby-comment cmt">#This function validates time in the following forms:</span>
+<span class="ruby-comment cmt">#   -&gt; 1pm</span>
+<span class="ruby-comment cmt">#   -&gt; 12:30pm</span>
+<span class="ruby-comment cmt">#   -&gt; 8am</span>
+<span class="ruby-comment cmt">#   -&gt; 15:11h</span>
+<span class="ruby-comment cmt">#   -&gt; 8h</span>
+<span class="ruby-comment cmt">#   -&gt; 02:1h</span>
+    
+    <span class="ruby-comment cmt">#Matches the regex</span>
+    <span class="ruby-identifier">regex</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'^(\d{1,2})(h|am|pm)|^(\d{1,2}):(\d{1,2})(h|am|pm)'</span>)
+    <span class="ruby-identifier">time</span> = <span class="ruby-identifier">regex</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">time</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">time</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">tmp</span> = []
+
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">time</span>
+
+    <span class="ruby-comment cmt">#Eliminates all nil's</span>
+    <span class="ruby-identifier">time</span>.<span class="ruby-identifier">length</span>().<span class="ruby-identifier">times</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">time</span>[<span class="ruby-identifier">i</span>]
+            <span class="ruby-identifier">tmp</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">time</span>[<span class="ruby-identifier">i</span>])
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">time</span> = <span class="ruby-identifier">tmp</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">tmp</span>.<span class="ruby-identifier">length</span>()<span class="ruby-operator">-</span><span class="ruby-value">1</span>]
+    <span class="ruby-identifier">last_pos</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">length</span>()<span class="ruby-operator">-</span><span class="ruby-value">1</span>
+    
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;--------&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">time</span>
+
+    <span class="ruby-comment cmt">#Checks if values are integers</span>
+    <span class="ruby-identifier">last_pos</span>.<span class="ruby-identifier">times</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">time</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-constant">Integer</span>(<span class="ruby-identifier">time</span>[<span class="ruby-identifier">i</span>]) <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">time</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">#Checks hour</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">time</span>[<span class="ruby-identifier">last_pos</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;h&quot;</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-value">0</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">time</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">time</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">23</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">time</span>[<span class="ruby-identifier">last_pos</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;am&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">time</span>[<span class="ruby-identifier">last_pos</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;pm&quot;</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-value">1</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">time</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">time</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span> 
+
+
+    <span class="ruby-comment cmt">#Checks minutes</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_pos</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-value">0</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">time</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">time</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">59</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

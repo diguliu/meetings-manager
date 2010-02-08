@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>extract_time_from_multiparameter_attributes (ValidatesDateTime::MultiparameterAttributes)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File vendor/plugins/validates_date_time/lib/multiparameter_attributes.rb, line 43</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">extract_time_from_multiparameter_attributes</span>(<span class="ruby-identifier">values</span>)
+      <span class="ruby-identifier">values</span>.<span class="ruby-identifier">last</span>(<span class="ruby-value">3</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">rjust</span>(<span class="ruby-value">2</span>, <span class="ruby-value str">&quot;0&quot;</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;:&quot;</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

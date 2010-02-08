@@ -1,0 +1,50 @@
+9
+
+dir
+6
+https://meetings-manager.googlecode.com/svn/trunk/app/views
+https://meetings-manager.googlecode.com/svn
+
+
+
+2009-10-21T18:09:00.163781Z
+5
+diguliu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+1faa06ba-be4a-11de-8784-f7ad4773dbab
+
+
+
+
+
+
+0
+
+meeting_participant_join_tables
+dir
+
+layouts
+dir
+
+participants
+dir
+
+home
+dir
+
+meetings
+dir
+

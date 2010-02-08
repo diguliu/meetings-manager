@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_before_and_after (DateTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File vendor/plugins/validates_date_time/test/date_test.rb, line 58</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_before_and_after</span>
+    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">:date_of_death</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'1950-01-01'</span>)
+    <span class="ruby-identifier">assert_invalid_and_errors_match</span> <span class="ruby-regexp re">/before/</span>, <span class="ruby-identifier">:date_of_death</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">assert_invalid_and_errors_match</span> <span class="ruby-regexp re">/before/</span>, <span class="ruby-identifier">:date_of_death</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2030</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>)
+    
+    <span class="ruby-identifier">p</span>.<span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">:date_of_birth</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'1950-01-01'</span>, <span class="ruby-identifier">:date_of_death</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">assert_invalid_and_errors_match</span> <span class="ruby-regexp re">/after/</span>, <span class="ruby-identifier">:date_of_death</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'1950-01-01'</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">:date_of_death</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Date</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1951</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>))
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

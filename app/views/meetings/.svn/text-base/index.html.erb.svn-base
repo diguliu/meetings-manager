@@ -1,0 +1,22 @@
+<a href="../participants">Participantes</a>
+
+<% if @meetings.blank? %>
+	<p>Não há nenhuma reunião cadastrada no banco de dados.</p>
+
+<% else %>
+	<p>Essas são as reuniões cadastradas no banco de dados:</p>
+	<ul id="meetings">
+	<% @meetings.each do |meeting| %>
+	<li>
+    	<%= link_to meeting.title, meeting %>
+    	<b><%= link_to 'Editar', edit_meeting_path(meeting) %></b>
+    	<b><%= link_to 'Deletar', meeting, :confirm => 'Tem certeza que deseja deletar essa reunião?', :method => :delete %></b>
+	
+	</li>
+	<% end %>
+	</ul>
+<% end %>
+
+<p><%= link_to 'Adcionar nova reunião', new_meeting_path %></p>
+
+

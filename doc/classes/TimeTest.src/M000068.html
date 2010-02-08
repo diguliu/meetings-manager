@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_12_hour_without_minute (TimeTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File vendor/plugins/validates_date_time/test/time_test.rb, line 20</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_12_hour_without_minute</span>
+    { <span class="ruby-value str">'11 am'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-regexp re">/11:00:00/</span>, <span class="ruby-value str">'7PM '</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-regexp re">/19:00:00/</span>, <span class="ruby-value str">' 1Am'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-regexp re">/01:00:00/</span>, <span class="ruby-value str">'12pm'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-regexp re">/12:00:00/</span>, <span class="ruby-value str">'12.00pm'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-regexp re">/12:00:00/</span>, <span class="ruby-value str">'12am'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-regexp re">/00:00:00/</span> }.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span>, <span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">assert_update_and_match</span> <span class="ruby-identifier">result</span>, <span class="ruby-identifier">:time_of_birth</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/2/trunk/test/unit/helpers
+END
+meeting_participant_join_tables_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/2/trunk/test/unit/helpers/meeting_participant_join_tables_helper_test.rb
+END
+participants_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/2/trunk/test/unit/helpers/participants_helper_test.rb
+END
+home_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2/trunk/test/unit/helpers/home_helper_test.rb
+END
+meetings_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/2/trunk/test/unit/helpers/meetings_helper_test.rb
+END

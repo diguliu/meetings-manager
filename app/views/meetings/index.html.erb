@@ -1,22 +1,23 @@
-<a href="../participants">Participantes</a>
+<%= link_to 'Home', root_path %>
+<%= link_to 'Participants', participants_path %>
 
 <% if @meetings.blank? %>
-	<p>Não há nenhuma reunião cadastrada no banco de dados.</p>
+	<p>There is no meeting registered.</p>
 
 <% else %>
-	<p>Essas são as reuniões cadastradas no banco de dados:</p>
+	<p>These are the current registered meetings:</p>
 	<ul id="meetings">
 	<% @meetings.each do |meeting| %>
 	<li>
     	<%= link_to meeting.title, meeting %>
-    	<b><%= link_to 'Editar', edit_meeting_path(meeting) %></b>
-    	<b><%= link_to 'Deletar', meeting, :confirm => 'Tem certeza que deseja deletar essa reunião?', :method => :delete %></b>
+    	<b><%= link_to 'Edit', edit_meeting_path(meeting) %></b>
+    	<b><%= link_to 'Delete', meeting, :confirm => 'Are you sure you want to dele this meeting?', :method => :delete %></b>
 	
 	</li>
 	<% end %>
 	</ul>
 <% end %>
 
-<p><%= link_to 'Adcionar nova reunião', new_meeting_path %></p>
+<p><%= link_to 'Add new meeting', new_meeting_path %></p>
 
 
